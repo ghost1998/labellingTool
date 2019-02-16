@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<script>
+	function previewFile()
+	{
+		var preview = document.querySelector('.preview'); 
+        var file    = document.querySelector('#imageupload').files[0];
+       	var reader  = new FileReader();
+
+       	reader.onloadend = function () 
+       	{
+       		preview.src = reader.result;
+       	}
+
+       	if (file) 
+       	{
+       		reader.readAsDataURL(file); //reads the data as a URL
+       	} 
+       	else 
+       	{
+       		preview.src = "";
+       	}
+   	}
+
+  	previewFile();  //calls the function named previewFile()
+</script>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+
+
+<body style="background-color:lavenderblush; >
+
+<div class="container-fluid">
+  <h1 style="background-color:lavenderblush;  text-align: center; " >Image annotator </h1>
+  <p style=" text-align: center; " > Upload your image</p>
+
+</div>
+
+
+<div class="container-fluid"    >
+
+  <div class="row">
+    <div class="col-sm-4" style=" padding-right: 75px; padding-left: 75px;"  >
+
+    	Upload your image here
+    	<input id="imageupload" type="file" onchange="previewFile()"><br>
+    	<img src="" class="img-responsive preview"  alt="Image preview...">
+
+
+    </div>
+
+    <div class="col-sm-4" >
+    	.col-sm-4
+    	<img src="" class="img-responsive preview"   alt="Image preview...">
+    </div>
+
+
+    <div class="col-sm-4" >
+    	.col-sm-4
+    	<img src="" class="img-responsive preview"  alt="Image preview...">
+    </div>
+
+
+  </div>
+
+</div>
+    
+</body>
+</html>
+
+
+
+<!-- 
+<html>
+
+<body>
+	<p>This is a paragraph.</p>
+
+
+
+</body>
+</html> -->
