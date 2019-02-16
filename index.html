@@ -5,6 +5,7 @@
 	{
 		var preview = document.querySelectorAll('.preview'); 
         var file    = document.querySelector('#imageupload').files[0];
+        // var file = new File("file:///home/anjan/Pictures/temp.png");
        	var reader  = new FileReader();
 
        	reader.onloadend = function () 
@@ -24,33 +25,46 @@
        	{
        		preview.src = "";
        	}
+
    	}
 
   	previewFile();  //calls the function named previewFile()
 </script>
 
+  <script>
+  $( function() {
+    $( "#slider-range" ).slider({
+      range: true,
+      min: 0,
+      max: 500,
+      values: [ 75, 300 ],
+      slide: function( event, ui ) {
+        $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+      }
+    });
+    $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
+      " - $" + $( "#slider-range" ).slider( "values", 1 ) );
+  } );
+  </script>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>Labelling Tool</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
-  <style>
-  	.imagedisplay
-  	{
-  		padding-right: 75px;
-  		padding-left: 75px;
-  	}
-  </style>
+ <link rel = "stylesheet" type = "text/css" href = "style.css" />
+
 </head>
 
 
-<body style="background-color:lavenderblush; >
+<body>
 
 <div class="container-fluid">
   <h1 style="background-color:lavenderblush;  text-align: center; " >Image annotator </h1>
@@ -92,9 +106,22 @@
     <div class="col-sm-4 imagedisplay" >
     	<img src="" class="img-responsive preview"  alt="Image preview...">
     </div>
-
-
   </div>
+
+
+  <div class="row">
+    <div class="col-sm-4 imagedisplay" >
+    </div>
+
+    <div class="col-sm-4 imagedisplay" >
+
+    </div>
+
+
+    <div class="col-sm-4 imagedisplay" >
+    </div>
+  </div>
+
 
 </div>
     
