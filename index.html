@@ -26,6 +26,12 @@
        		preview.src = "";
        	}
 
+  
+  
+  
+       	document.getElementById("Ground Truth Image").innerHTML = "Ground Truth Image";
+       	document.getElementById("Manipulated Image").innerHTML = "Manipulated Image";
+       	document.getElementById("Binary Manipulated Image").innerHTML = "Binary Manipulated Image";
    	}
 
   	previewFile();  //calls the function named previewFile()
@@ -48,6 +54,9 @@
   </script>
 
 
+  <script src="https://demos.jquerymobile.com/1.4.2/js/jquery.js"></script>
+  <!-- <script src="https://demos.jquerymobile.com/1.4.2/js/jquery.mobile-1.4.2.min.js"></script> -->
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -59,7 +68,11 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
- <link rel = "stylesheet" type = "text/css" href = "style.css" />
+  <link rel="stylesheet" href="https://demos.jquerymobile.com/1.4.2/css/themes/default/jquery.mobile-1.4.2.min.css">  
+
+
+  <link rel = "stylesheet" type = "text/css" href = "style.css" />
+
 
 </head>
 
@@ -76,50 +89,58 @@
 <div class="container-fluid"    >
 
   <div class="row">
-    <div class="col-sm-4 imagedisplay" >
+    <div class="col-sm-6 imagedisplay" >
 
     	Upload the image
     	<input id="imageupload" type="file" onchange="previewFile()"><br>
     </div>
-
-    <div class="col-sm-4 imagedisplay" >
+<!-- 
+    <div class="col-sm-6 imagedisplay" >
     	Manipulated Image
-    </div>
-
-
-    <div class="col-sm-4 imagedisplay" >
-    	Binary Manipulated Image
-    </div>
-
+    </div> -->
   </div>
 
   <div class="row">
-    <div class="col-sm-4 imagedisplay" >
-    	<img src="" class="img-responsive preview"  alt="Image preview...">
+
+    <div class="col-sm-6 imagedisplay" >
+    	<img src="" class="img-responsive preview"   alt="">
+
+    	<p id="Ground Truth Image"></p>
     </div>
 
-    <div class="col-sm-4 imagedisplay" >
-    	<img src="" class="img-responsive preview"   alt="Image preview...">
+    <div class="col-sm-6 imagedisplay" >
+    	<img src="" class="img-responsive preview"   alt="">
+    	<p id="Manipulated Image"></p>
     </div>
 
 
-    <div class="col-sm-4 imagedisplay" >
-    	<img src="" class="img-responsive preview"  alt="Image preview...">
-    </div>
   </div>
 
 
+<br>
+<br>
+<br>
   <div class="row">
-    <div class="col-sm-4 imagedisplay" >
+    <div class="col-sm-6 imagedisplay" >
+    	<img src="" class="img-responsive preview"   alt="">
+    	<p id="Binary Manipulated Image"></p>
     </div>
 
-    <div class="col-sm-4 imagedisplay" >
+    <div class="col-sm-6 imagedisplay" >
+
+    	<div class="slidecontainer">
+		  <input type="range" min="0" max="255" value="50" class="slider red" id="myRange"> <br>
+		  <input type="range" min="0" max="255" value="50" class="slider red" id="myRange"> <br> <br> 
+		  <input type="range" min="0" max="255" value="50" class="slider blue" id="myRange"> <br>
+		  <input type="range" min="0" max="255" value="50" class="slider blue" id="myRange"> <br> <br> 
+		  <input type="range" min="0" max="255" value="50" class="slider green" id="myRange"> <br>
+		  <input type="range" min="0" max="255" value="50" class="slider green" id="myRange"> <br> <br> 
+		</div>
 
     </div>
 
 
-    <div class="col-sm-4 imagedisplay" >
-    </div>
+
   </div>
 
 
