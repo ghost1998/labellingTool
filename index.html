@@ -3,13 +3,17 @@
 <script>
 	function previewFile()
 	{
-		var preview = document.querySelector('.preview'); 
+		var preview = document.querySelectorAll('.preview'); 
         var file    = document.querySelector('#imageupload').files[0];
        	var reader  = new FileReader();
 
        	reader.onloadend = function () 
        	{
-       		preview.src = reader.result;
+       		for (i = 0; i < preview.length; i++)
+       		{
+       			preview[i].src = reader.result;
+       		}
+       		
        	}
 
        	if (file) 
@@ -35,6 +39,14 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+  <style>
+  	.imagedisplay
+  	{
+  		padding-right: 75px;
+  		padding-left: 75px;
+  	}
+  </style>
 </head>
 
 
@@ -50,23 +62,34 @@
 <div class="container-fluid"    >
 
   <div class="row">
-    <div class="col-sm-4" style=" padding-right: 75px; padding-left: 75px;"  >
+    <div class="col-sm-4 imagedisplay" >
 
-    	Upload your image here
+    	Upload the image
     	<input id="imageupload" type="file" onchange="previewFile()"><br>
-    	<img src="" class="img-responsive preview"  alt="Image preview...">
-
-
     </div>
 
-    <div class="col-sm-4" >
-    	.col-sm-4
+    <div class="col-sm-4 imagedisplay" >
+    	Manipulated Image
+    </div>
+
+
+    <div class="col-sm-4 imagedisplay" >
+    	Binary Manipulated Image
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col-sm-4 imagedisplay" >
+    	<img src="" class="img-responsive preview"  alt="Image preview...">
+    </div>
+
+    <div class="col-sm-4 imagedisplay" >
     	<img src="" class="img-responsive preview"   alt="Image preview...">
     </div>
 
 
-    <div class="col-sm-4" >
-    	.col-sm-4
+    <div class="col-sm-4 imagedisplay" >
     	<img src="" class="img-responsive preview"  alt="Image preview...">
     </div>
 
