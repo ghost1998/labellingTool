@@ -2,7 +2,7 @@ function thresholdImage(slidername, Value)
 {
   var canv2 = document.getElementById("Q1");
   var context2 = canv2.getContext("2d");
-  var imageData2 = context2.getImageData(0, 0, canv2.width, canv2.height);
+  var originalImagedata = context2.getImageData(0, 0, canv2.width, canv2.height);
   Value = 254;
   // alert("in thresh");
 
@@ -10,9 +10,9 @@ function thresholdImage(slidername, Value)
   {
     var i;
     // alert("in S1");
-    for (i = 0; i < imageData2.data.length; i += 4) 
+    for (i = 0; i < originalImagedata.data.length; i += 4) 
     {
-      if(imageData2.data[i] < Value ) imageData2.data[i] = 0;  
+      if(originalImagedata.data[i] < Value ) originalImagedata.data[i] = 0;  
     }
     alert("Done S1");
   }
@@ -21,9 +21,9 @@ function thresholdImage(slidername, Value)
   {
     var i;
     // alert("in S1");
-    for (i = 0; i < imageData2.data.length; i += 4) 
+    for (i = 0; i < originalImagedata.data.length; i += 4) 
     {
-      if(imageData2.data[i] > Value ) imageData2.data[i] = 0;  
+      if(originalImagedata.data[i] > Value ) originalImagedata.data[i] = 0;  
     }
     alert("Done S2");
 
@@ -33,9 +33,9 @@ function thresholdImage(slidername, Value)
   {
     var i;
     // alert("in S1");
-    for (i = 0; i < imageData2.data.length; i += 4) 
+    for (i = 0; i < originalImagedata.data.length; i += 4) 
     {
-      if(imageData2.data[i+1] < Value ) imageData2.data[i+1] = 0;  
+      if(originalImagedata.data[i+1] < Value ) originalImagedata.data[i+1] = 0;  
     }
   }
 
@@ -43,9 +43,9 @@ function thresholdImage(slidername, Value)
   {
     var i;
     // alert("in S1");
-    for (i = 0; i < imageData2.data.length; i += 4) 
+    for (i = 0; i < originalImagedata.data.length; i += 4) 
     {
-      if(imageData2.data[i+1] > Value ) imageData2.data[i+1] = 0;  
+      if(originalImagedata.data[i+1] > Value ) originalImagedata.data[i+1] = 0;  
     }
   }
 
@@ -53,9 +53,9 @@ function thresholdImage(slidername, Value)
   {
     var i;
     // alert("in S1");
-    for (i = 0; i < imageData2.data.length; i += 4) 
+    for (i = 0; i < originalImagedata.data.length; i += 4) 
     {
-      if(imageData2.data[i+2] < Value ) imageData2.data[i+2] = 0;  
+      if(originalImagedata.data[i+2] < Value ) originalImagedata.data[i+2] = 0;  
     }
   }
 
@@ -63,16 +63,16 @@ function thresholdImage(slidername, Value)
   {
     var i;
     // alert("in S1");
-    for (i = 0; i < imageData2.data.length; i += 4) 
+    for (i = 0; i < originalImagedata.data.length; i += 4) 
     {
-      if(imageData2.data[i+2] > Value ) imageData2.data[i+2] = 0;  
+      if(originalImagedata.data[i+2] > Value ) originalImagedata.data[i+2] = 0;  
     }
   }
 
   var canv1 = document.getElementById("Q1");
   var context1 = canv1.getContext("2d");
 
-  context1.putImageData(imageData2, 0, 0);
+  context1.putImageData(originalImagedata, 0, 0);
 }
 
 
@@ -83,7 +83,9 @@ function threshold()
 {
   var canv2 = document.getElementById("Q2");
   var context2 = canv2.getContext("2d");
-  var imageData2 = context2.getImageData(0, 0, canv2.width, canv2.height);
+  var originalImagedata = context2.getImageData(0, 0, canv2.width, canv2.height);
+  var binaryImageData = context2.getImageData(0, 0, canv2.width, canv2.height);
+
 
   var red_lo = document.getElementById("S1").value;
   var red_hi = document.getElementById("S2").value;
@@ -94,30 +96,46 @@ function threshold()
 
 
   var i;
-  for (i = 0; i < imageData2.data.length; i += 4) 
+  for (i = 0; i < originalImagedata.data.length; i += 4) 
   {
-    // if(imageData2.data[i] < red_lo ) imageData2.data[i] = 0;
-    // if(imageData2.data[i] > red_hi ) imageData2.data[i] = 0;
-    // if(imageData2.data[i+1] < blue_lo ) imageData2.data[i+1] = 0;
-    // if(imageData2.data[i+1] > blue_hi ) imageData2.data[i+1] = 0;
-    // if(imageData2.data[i+2] < green_lo ) imageData2.data[i+2] = 0;
-    // if(imageData2.data[i+2] > green_hi ) imageData2.data[i+2] = 0;
+    // if(originalImagedata.data[i] < red_lo ) originalImagedata.data[i] = 0;
+    // if(originalImagedata.data[i] > red_hi ) originalImagedata.data[i] = 0;
+    // if(originalImagedata.data[i+1] < blue_lo ) originalImagedata.data[i+1] = 0;
+    // if(originalImagedata.data[i+1] > blue_hi ) originalImagedata.data[i+1] = 0;
+    // if(originalImagedata.data[i+2] < green_lo ) originalImagedata.data[i+2] = 0;
+    // if(originalImagedata.data[i+2] > green_hi ) originalImagedata.data[i+2] = 0;
 
-    if( (imageData2.data[i] < red_lo) || (imageData2.data[i] > red_hi) || (imageData2.data[i+1] < blue_lo) || (imageData2.data[i+1] > blue_hi ) 
-      || (imageData2.data[i+2] < green_lo ) || (imageData2.data[i+2] > green_hi) )
+    if( (originalImagedata.data[i] < red_lo) || (originalImagedata.data[i] > red_hi) || (originalImagedata.data[i+1] < blue_lo) || (originalImagedata.data[i+1] > blue_hi ) 
+      || (originalImagedata.data[i+2] < green_lo ) || (originalImagedata.data[i+2] > green_hi) )
     {
-      imageData2.data[i] = 0;
-      imageData2.data[i+1] = 0;
-      imageData2.data[i+2] = 0;
-
+      originalImagedata.data[i] = 0;
+      originalImagedata.data[i+1] = 0;
+      originalImagedata.data[i+2] = 0;
+      binaryImageData.data[i] = 255;
+      binaryImageData.data[i+1] = 255;
+      binaryImageData.data[i+2] = 255;
+    }
+    else 
+    {
+      binaryImageData.data[i] = 0;
+      binaryImageData.data[i+1] = 0;
+      binaryImageData.data[i+2] = 0;
     }
   }
 
   var canv1 = document.getElementById("Q1");
   var context1 = canv1.getContext("2d");
 
-  context1.putImageData(imageData2, 0, 0);
-  alert("Done Threshold function");
+  context1.putImageData(originalImagedata, 0, 0);
+
+
+  var canv3 = document.getElementById("Q3");
+  var context3 = canv3.getContext("2d");
+
+  context3.putImageData(binaryImageData, 0, 0);
+  // alert("Done Threshold function");
+
+  // alert("Done Threshold function");
 }
 
 
