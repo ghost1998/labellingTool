@@ -1,72 +1,5 @@
-<!DOCTYPE html>
-
-<script  type="text/javascript">
-
-
-
-function readURL(e)
-{
-    var reader = new FileReader();
-    var canv1 = document.getElementById('Q1');
-    var ctx1 = canv1.getContext('2d');
-
-    var canv2 = document.getElementById('Q2');
-    var ctx2 = canv2.getContext('2d');
-
-    var canv3 = document.getElementById('Q3');
-    var ctx3 = canv3.getContext('2d');
-
-    reader.onload = function(event)
-    {
-        var img = new Image();
-        img.onload = function()
-        {
-            ctx1.drawImage(img,0,0, canv1.width, canv1.height);
-            ctx2.drawImage(img,0,0, canv2.width, canv2.height);
-            ctx3.drawImage(img,0,0, canv3.width, canv3.height);
-
-        }
-        img.src = event.target.result;
-    }
-    reader.readAsDataURL(e.files[0]);     
-
-}
-
-
-
-function previewFile(input)
-{
-  var file    = document.getElementById('imageupload').files[0];
-  var reader  = new FileReader();
-
-
-  var img = new Image();
-  img.onload = function() 
-  {
-    ctx.drawImage(img, 0,0, ctx.width , ctx.height);
-  }
-
-  img.src = URL.createObjectURL(file);
-
-
-
-
-
-  document.getElementById("Ground Truth Image").innerHTML = "Ground Truth Image";
-  document.getElementById("Manipulated Image").innerHTML = "Manipulated Image";
-  document.getElementById("Binary Manipulated Image").innerHTML = "Binary Manipulated Image";
-}
-
-  // previewFile();  //calls the function named previewFile()
-</script>
-
-
-<script src="https://demos.jquerymobile.com/1.4.2/js/jquery.js"></script>
-<!-- <script src="https://demos.jquerymobile.com/1.4.2/js/jquery.mobile-1.4.2.min.js"></script> -->
-
-
-<!DOCTYPE html>
 <html lang="en">
+
 <head>
   <title>Labelling Tool</title>
   <meta charset="utf-8">
@@ -74,11 +7,12 @@ function previewFile(input)
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-
+  <script src="https://demos.jquerymobile.com/1.4.2/js/jquery.js"></script>
   <link rel="stylesheet" href="https://demos.jquerymobile.com/1.4.2/css/themes/default/jquery.mobile-1.4.2.min.css">  
 
-
   <link rel = "stylesheet" type = "text/css" href = "style.css" />
+
+  <script src="canvas.js"></script> 
 
 
 </head>
@@ -99,7 +33,7 @@ function previewFile(input)
       <div class="col-sm-12 imagedisplay" >
 
        Upload the image
-       <input id="imageupload" type="file" onchange="readURL(this);">
+       <input id="imageupload" type="file" onchange="Display(this);">
        <br>
      </div>
 
@@ -127,7 +61,7 @@ function previewFile(input)
  </div>
 
  <!-- ----------------------------------------------------------------------------------------------------- -->
-
+ <br> <br>
  <div class="row">
   <div class="col-sm-6 imagedisplay" >
    <!-- <img src="" class="img-responsive preview"   alt=""> -->
@@ -142,15 +76,63 @@ function previewFile(input)
  </div>
 
  <div class="col-sm-6 imagedisplay" >
-  <br><br>
-   <div class="slidecontainer">
-    <input type="range" min="0" max="255" value="0" class="slider red" id="myRange"> <br>
-    <input type="range" min="0" max="255" value="255" class="slider red" id="myRange"> <br> <br> 
-    <input type="range" min="0" max="255" value="0" class="slider blue" id="myRange"> <br>
-    <input type="range" min="0" max="255" value="255" class="slider blue" id="myRange"> <br> <br> 
-    <input type="range" min="0" max="255" value="0" class="slider green" id="myRange"> <br>
-    <input type="range" min="0" max="255" value="255" class="slider green" id="myRange"> <br> <br> 
+  <!-- <br><br> -->
+  <div class="slidecontainer">
+
+    <div class="row">
+
+      <div class="col-sm-11" >
+       <input type="range" min="0" max="255" value="0" class="slider red" id="S1"> <br> 
+     </div>
+
+     <div class="col-sm-1" > 0 </div>
+   </div>
+
+
+   <div class="row">
+
+    <div class="col-sm-11" >
+      <input type="range" min="0" max="255" value="255" class="slider red" id="S2"> <br> <br> 
+    </div>
+
+    <div class="col-sm-1" > 255 </div>
   </div>
+  <div class="row">
+
+    <div class="col-sm-11" >
+      <input type="range" min="0" max="255" value="0" class="slider blue" id="S3"> <br>
+    </div>
+
+    <div class="col-sm-1" > 0 </div>
+  </div>
+
+  <div class="row">
+
+    <div class="col-sm-11" >
+      <input type="range" min="0" max="255" value="255" class="slider blue" id="S4"> <br> <br> 
+    </div>
+
+    <div class="col-sm-1" > 255 </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-11" >
+      <input type="range" min="0" max="255" value="0" class="slider green" id="S5" > <br>
+    </div>
+
+    <div class="col-sm-1" > 0 </div>
+  </div>
+
+  <div class="row">
+
+    <div class="col-sm-11" >
+      <input type="range" min="0" max="255" value="255" class="slider green" id="S6"> <br> <br> 
+    </div>
+
+    <div class="col-sm-1" > 255 </div>
+  </div>
+
+</div>
 
 </div>
 
