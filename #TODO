@@ -2,4 +2,12 @@
 1. Add Sliders : Done
 2. Add slider functionality
 3. Add image processing libraries
-4. Add functionality to annotate
+4. Threshold functionality
+5. connected components
+6. Setting minimum size (Can be handled in roundness measure )
+7. Finding area
+8. Finding Perimeter
+9. Roundness measure
+10. Removing non round elements 
+11. Functionality to accept axisting ones
+12. Functionality to annotate new ones

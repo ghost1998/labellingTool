@@ -13,6 +13,7 @@
   <link rel = "stylesheet" type = "text/css" href = "style.css" />
 
   <script src="canvas.js"></script> 
+  <script src="threshold.js"></script> 
 
 
 </head>
@@ -85,7 +86,7 @@
        <input type="range" min="0" max="255" value="0" class="slider red" id="S1"> <br> 
      </div>
 
-     <div class="col-sm-1" > 0 </div>
+     <div class="col-sm-1" > <p id="V1"> 0 </p> </div>
    </div>
 
 
@@ -95,7 +96,7 @@
       <input type="range" min="0" max="255" value="255" class="slider red" id="S2"> <br> <br> 
     </div>
 
-    <div class="col-sm-1" > 255 </div>
+    <div class="col-sm-1" id="V2"> 255 </div>
   </div>
   <div class="row">
 
@@ -103,7 +104,7 @@
       <input type="range" min="0" max="255" value="0" class="slider blue" id="S3"> <br>
     </div>
 
-    <div class="col-sm-1" > 0 </div>
+    <div class="col-sm-1" id="V3"> 0 </div>
   </div>
 
   <div class="row">
@@ -112,7 +113,7 @@
       <input type="range" min="0" max="255" value="255" class="slider blue" id="S4"> <br> <br> 
     </div>
 
-    <div class="col-sm-1" > 255 </div>
+    <div class="col-sm-1" id="V4"> 255 </div>
   </div>
 
   <div class="row">
@@ -120,7 +121,7 @@
       <input type="range" min="0" max="255" value="0" class="slider green" id="S5" > <br>
     </div>
 
-    <div class="col-sm-1" > 0 </div>
+    <div class="col-sm-1" id="V5"> 0 </div>
   </div>
 
   <div class="row">
@@ -129,7 +130,7 @@
       <input type="range" min="0" max="255" value="255" class="slider green" id="S6"> <br> <br> 
     </div>
 
-    <div class="col-sm-1" > 255 </div>
+    <div class="col-sm-1" id="V6"> 255 </div>
   </div>
 
 </div>

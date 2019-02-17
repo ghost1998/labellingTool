@@ -25,3 +25,4 @@ function Display(e)
   reader.readAsDataURL(e.files[0]);     
 
 }
+
