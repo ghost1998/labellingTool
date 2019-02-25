@@ -22,7 +22,7 @@
 <body>
 
   <div class="container-fluid">
-    <h1 style="background-color:lavenderblush;  text-align: center; " >Image annotator </h1>
+    <h1 style="background-color:lavender;  text-align: center; " >Image annotator </h1>
     <p style=" text-align: center; " > Upload your image</p>
 
   </div>
@@ -34,7 +34,7 @@
       <div class="col-sm-12 imagedisplay" >
 
        Upload the image
-       <input id="imageupload" type="file" onchange="Display(this);">
+       <input id="imageupload" type="file" onchange="Display(this); threshold() ;">
        <br>
      </div>
 
@@ -46,14 +46,14 @@
 
     <div class="col-sm-6 imagedisplay" >
     	<!-- <img src="" class="img-responsive preview" id="Q2" alt=""> -->
-     <canvas  id="Q2"> </canvas>
+     <canvas  id="Q2" width=700px height=400px> </canvas>
 
      <p id="Ground Truth Image"></p>
    </div>
 
    <div class="col-sm-6 imagedisplay" >
      <!-- <img src="" class="img-responsive preview"   alt=""> -->
-     <canvas  id='Q1' > </canvas>
+     <canvas  id='Q1' width=700px height=400px > </canvas>
 
      <p id="Manipulated Image"></p>
    </div>
@@ -68,7 +68,7 @@
    <!-- <img src="" class="img-responsive preview"   alt=""> -->
    <!-- <img src="" class="img-responsive preview" id="Q3" alt=""> -->
    <!-- <canvas  id="Q" class="preview" > </canvas> -->
-   <canvas  id="Q3"> </canvas>
+   <canvas  id="Q3" width=700px height=400px> </canvas>
 
    <!-- <canvas  id="Q3" class="preview" > </canvas> -->
 
@@ -131,6 +131,17 @@
     </div>
 
     <div class="col-sm-1" id="V6"> 255 </div>
+  </div>
+
+  <div class="row">
+
+    <div class="col-sm-6">
+      <button type="button" onclick="alert('Hello world!')"> Automate </button>
+    </div>
+    <div class="col-sm-6">
+      <button type="button" onclick="alert('Hello world!')"> Automate </button>
+    </div>
+
   </div>
 
 </div>

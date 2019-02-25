@@ -1,6 +1,6 @@
 body
 {
-	background-color:lavenderblush;
+	background-color:lavender;
 }
 
 .imagedisplay
@@ -59,14 +59,20 @@ body
   background: #4CAF50;
 }
 
-.preview
+
+input[type="file"] 
 {
-	max-height:400px;
+    display: none;
+}
+.custom-imageupload
+{
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 3px 6px;
+    cursor: pointer;
 }
 
-canvas
-{
-  width: 80%;
-  
-}
 
+#wrapper{position:relative;}
+#Q2{position:absolute; border:0px solid red;}
+#Q3{position:absolute; border:0px solid blue;}
