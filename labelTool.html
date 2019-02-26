@@ -12,6 +12,7 @@
   <script src="https://demos.jquerymobile.com/1.4.2/js/jquery.js"></script>
   <link rel="stylesheet" href="https://demos.jquerymobile.com/1.4.2/css/themes/default/jquery.mobile-1.4.2.min.css">  
 
+  
   <link rel = "stylesheet" type = "text/css" href = "labelStyle.css" />
 
   <script src="canvas.js"></script> 
@@ -81,12 +82,23 @@
         <canvas  id="Q2"  width=1700px height=700px > </canvas>
         <canvas  id="Q3" width=1700px height=700px  > </canvas>
 
-        <div style="position:absolute;top:17%;left:47%;width:10px;height:10px;background:black;" id="black" onclick="color(this)"></div>
-        <div style="position:absolute;top:22%;left:45%;width:15px;height:15px;background:white;border:2px solid;" id="white" onclick="color(this)"> </div>
+        <!-- <div style="position:absolute;top:17%;left:47%;width:10px;height:10px;background:black;" id="black" onclick="color(this)"></div> -->
+        <!-- <div style="position:absolute;top:22%;left:45%;width:15px;height:15px;background:white;border:2px solid;" id="white" onclick="color(this)"> </div> -->
   <script src="draw.js"></script> 
 
       </div>
     </div>
+     <div class="btn-group-vertical" id="black" style="float: right;">
+        <button type="button" class="btn btn-primary" onclick="color(black,10)">Large</button>
+        <button type="button" class="btn btn-primary" onclick="color(black,6);">Pencil</button>
+        <button type="button" class="btn btn-primary" onclick="color(black,2);">Small</button>
+        <!-- <button type="button" onclick="color(black);"style="float: right;" >Pencil</button> -->
+      </div>
+      <div class="btn-group-vertical" id="white" style="float:left;">
+        <button type="button" class="btn btn-primary" onclick="color(white,10)">Large</button>
+        <button type="button" class="btn btn-primary" onclick="color(white,6);">Eraser</button>
+        <button type="button" class="btn btn-primary" onclick="color(white,2);">Small</button>
+      </div>
     <div id='test'></div>
 
 <!-- ----------------------------------------------------------------------------------------------------- -->

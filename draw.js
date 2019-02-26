@@ -5,7 +5,7 @@
         currY = 0,
         dot_flag = false;
 
-    var x = "black",
+    var x = "red",
         y = 2;
     
     function init() 
@@ -45,21 +45,21 @@
 
 
     
-    function color(obj) 
+    function color(obj,size) 
     {
-        alert(obj.id);
+        //alert(obj.id);
         if(obj.id == "black")
         {
             ctx.globalCompositeOperation = "source-over";
             // alert("inb");
-            x = "rgba(255,255,0,255.0)";
-            y = 4;
+            x = "rgba(255,0,0)";
+            y = size;
         }
         else
         {
             ctx.globalCompositeOperation = "destination-out"
             // x = "rgba(255,0 ,0,0)";
-            y = 10;
+            y = size;
         }
         // switch (obj.id) 
         // {
@@ -87,8 +87,7 @@
         ctx.lineTo(currX, currY);
         ctx.strokeStyle = x;
       
-// ctx.globalCompositeOperation = "destination-out";
-            // ctx.strokeStyle = "rgba(255,255,0,255)";
+
 
         ctx.lineWidth = y;
         ctx.stroke();
@@ -121,8 +120,8 @@
         if (res == 'down') {
             prevX = currX;
             prevY = currY;
-            currX = e.clientX - canvas.offsetLeft;
-            currY = e.clientY - canvas.offsetTop ;
+            currX = e.layerX;
+            currY = e.layerY ;
     
             flag = true;
             dot_flag = true;
@@ -141,8 +140,8 @@
             if (flag) {
                 prevX = currX;
                 prevY = currY;
-                currX = e.clientX - canvas.offsetLeft;
-                currY = e.clientY - canvas.offsetTop;
+                currX = e.layerX;
+                currY = e.layerY;
                 draw();
             }
         }
