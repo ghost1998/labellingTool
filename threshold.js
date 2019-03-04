@@ -44,9 +44,9 @@ function threshold()
     }
     else 
     {
-      binaryImageData.data[i] = 255;
-      binaryImageData.data[i+1] = 255;
-      binaryImageData.data[i+2] = 255;
+      binaryImageData.data[i] = 0;
+      binaryImageData.data[i+1] = 0;
+      binaryImageData.data[i+2] = 0;
       binaryImageData.data[i+3] = 0;
     }
   }
