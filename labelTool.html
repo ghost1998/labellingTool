@@ -11,25 +11,29 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   <script src="https://demos.jquerymobile.com/1.4.2/js/jquery.js"></script>
   <link rel="stylesheet" href="https://demos.jquerymobile.com/1.4.2/css/themes/default/jquery.mobile-1.4.2.min.css">  
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <script type="text/javascript" src="connected-component-labelling.js"></script>
+
   <!-- <script async src="opencv.js" onload="alert("loaded");" type="text/javascript"></script> -->
 
   <link rel = "stylesheet" type = "text/css" href = "labelStyle.css" />
 
   <script src="canvas.js"></script> 
   <script src="threshold.js"></script> 
-  <script src="median.js"></script> 
+
+  <!-- <script src="median.js"></script>  -->
   <!-- <script src="processing.js" onload="alert('loaded')" type="text/javascript"></script> -->
 
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="jmag.js" type="text/javascript"></script>
+  <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> -->
+<!-- <script src="jmag.js" type="text/javascript"></script> -->
 
 
 
   <!-- <script src="processing.js" onload="alert( "eee" ); "></script>  -->
 
-  <script src="morph.js"></script> 
-  <script src="imageprocessing.js"></script> 
+<!--   <script src="morph.js"></script> 
+  <script src="imageprocessing.js"></script>  -->
 
 
 </head>
@@ -76,7 +80,7 @@
 
     <div class="col-sm-1">
       <!-- <button type="button" onclick="filter();"> Predict </button> -->
-      <button type="button" onclick="getArray();"> Predict </button>
+      <button type="button" onclick="Predict();"> Predict </button>
     </div>
 
     <div class="col-sm-2">
@@ -118,6 +122,11 @@
         <!-- <button class="btn"><i class="fas fa-eraser"></i></button> -->
         <button class="btn" onclick="getPencil()"><i class="glyphicon glyphicon-pencil"></i></button>
         <button class="btn" onclick="getErasor()"><i class="glyphicon glyphicon-erase"></i></button>
+
+        <button class="btn" onclick="mag()"> <i class="fa fa-search"></i></button>      
+        <button class="btn" onclick="cropTool()"> <i class="fa fa-crop"></i></button>      
+
+
         <!-- <button class="btn"><i class="glyphicon glyphicon-plus"></i></button>
         <button class="btn"><i class="  glyphicon glyphicon-minus-sign"></i></button>
  -->
@@ -162,7 +171,7 @@
 
         <br>
         <br>
-        <button class="btncenter" onclick="mag()"> <i class="fa fa-search"></i></button>      
+
 
         </div>
         <!-- <canvas  id="Q2"  width=1700px height=700px > </canvas> -->

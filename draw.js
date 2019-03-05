@@ -168,14 +168,15 @@ function customSize(arg)
 
     console.log(main.width)
     var rect = canvas.getBoundingClientRect();
-    xp =  (e.clientX - rect.left) / (rect.right - rect.left) * main.width
-    yp = (e.clientY - rect.top) / (rect.bottom - rect.top) * main.height
+    xp =  (e.clientX - rect.left) / (rect.right - rect.left) * main.width - 15
+    yp = (e.clientY - rect.top) / (rect.bottom - rect.top) * main.height - 15
 
     console.log(xp)
     console.log(yp)
     zoomCtx.fillRect(0,0, zoom.width, zoom.height);
     // zoomCtx.drawImage(main, e.x, e.y, 200, 100, 0,0, 400, 200);
     // zoomCtx.drawImage(main, e.layerX, e.layerY, 200, 100, 0,0, 400, 200);
+    zoomCtx.drawImage(main2, xp, yp, 200, 100, 0,0, 400, 200);
     zoomCtx.drawImage(main, xp, yp, 200, 100, 0,0, 400, 200);
     console.log(zoom.style);
     zoom.style.top = e.pageY + 10 + "px"
@@ -189,6 +190,7 @@ function customSize(arg)
   }
 
   var main = document.getElementById("Q3");
+  var main2 = document.getElementById("Q2");
   var zoom = document.getElementById("zoom");
   var ctx = main.getContext("2d")
   var zoomCtx = zoom.getContext("2d");
@@ -224,3 +226,90 @@ function removeglass()
 
 
 init();
+
+
+
+
+
+
+
+function initDraw(canvas) 
+{
+
+    function setMousePosition(e) {
+        var ev = e || window.event; //Moz || IE
+        if (ev.pageX) 
+        { //Moz
+            console.log("in moz")
+
+            var rect = canvas.getBoundingClientRect();
+            xp =  (e.clientX - rect.left) / (rect.right - rect.left) * main.width
+            yp = (e.clientY - rect.top) / (rect.bottom - rect.top) * main.height
+
+            mouse.x = e.layerX
+            mouse.y = e.layerY
+
+            // mouse.x = ev.pageX + window.pageXOffset;
+            // mouse.y = ev.pageY + window.pageYOffset;
+        } else if (ev.clientX) { //IE
+            mouse.x = ev.clientX + document.body.scrollLeft;
+            mouse.y = ev.clientY + document.body.scrollTop;
+        }
+    };
+
+    var mouse = {
+        x: 0,
+        y: 0,
+        startX: 0,
+        startY: 0
+    };
+    var element = null;
+
+    canvas.onmousemove = function (e) {
+        setMousePosition(e);
+        if (element !== null) {
+
+                        var rect = canvas.getBoundingClientRect();
+            xp =  (e.clientX - rect.left) / (rect.right - rect.left) * main.width
+            yp = (e.clientY - rect.top) / (rect.bottom - rect.top) * main.height
+
+            mouse.x = e.layerX
+            mouse.y = e.layerY
+
+
+            element.style.width = Math.abs(mouse.x - mouse.startX) + 'px';
+            element.style.height = Math.abs(mouse.y - mouse.startY) + 'px';
+            element.style.left = (mouse.x - mouse.startX < 0) ? mouse.x + 'px' : mouse.startX + 'px';
+            element.style.top = (mouse.y - mouse.startY < 0) ? mouse.y + 'px' : mouse.startY + 'px';
+        }
+    }
+
+    canvas.onclick = function (e) {
+        if (element !== null) {
+            element = null;
+            canvas.style.cursor = "default";
+            console.log("finsihed.");
+        } else {
+            console.log("begun.");
+
+                        var rect = canvas.getBoundingClientRect();
+            xp =  (e.clientX - rect.left) / (rect.right - rect.left) * main.width
+            yp = (e.clientY - rect.top) / (rect.bottom - rect.top) * main.height
+
+            mouse.x = e.layerX
+            mouse.y = e.layerY
+
+            mouse.startX = mouse.x;
+            mouse.startY = mouse.y;
+            element = document.createElement('div');
+            element.className = 'rectangle'
+            element.style.left = mouse.x + 'px';
+            element.style.top = mouse.y + 'px';
+            canvas.appendChild(element)
+            canvas.style.cursor = "crosshair";
+        }
+    }
+}
+
+
+// initDraw(document.getElementById('Q3'));

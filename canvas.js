@@ -1,3 +1,11 @@
+   no_cc = 0;
+   cc = [];
+  var arr = [];
+  var vis = [];
+
+  ch = 0;
+  cw = 0;
+
 function Display(e)
 {
   var reader = new FileReader();
@@ -44,6 +52,104 @@ function toggle()
     // canvas2.style.visibility='hidden';
   }
 }
+
+
+function dfs(ix, jx)
+{
+  if(vis[ix][jx] == 1 || ix<0 || jx <0 || ix>=ch || jx >=cw)
+  {
+    return;
+  }
+
+  vis[ix][jx] = 1;
+  dfs(ix-1, jx); 
+  dfs(ix-1, jx+1); 
+  dfs(ix-1, jx-1); 
+  dfs(ix, jx+1); 
+  dfs(ix, jx-1); 
+  dfs(ix+1, jx); 
+  dfs(ix+1, jx+1); 
+  dfs(ix+1, jx-1); 
+  return ;
+}
+
+
+function Predict()
+{
+  var canvas1=document.getElementById('Q2');
+  var canvas2=document.getElementById('Q3');
+
+  var canvas1=document.getElementById('Q2');
+  var context1 = canvas1.getContext("2d");
+
+  var canvas2=document.getElementById('Q3');
+  var context2 = canvas2.getContext("2d");
+
+  var originalImagedata = context1.getImageData(0, 0, canvas2.width, canvas2.height);
+  var binaryImagedata = context2.getImageData(0, 0, canvas2.width, canvas2.height);
+
+  console.log(binaryImagedata.data.length);
+
+  var binaryimg = [];
+
+  for (i = 0; i < binaryImagedata.data.length; i += 4)
+  {
+    if(binaryImagedata.data[i] == 255) binaryimg.push(1);
+    else binaryimg.push(0);
+  }
+
+  console.log(binaryimg.length)
+  // matrix = BlobExtraction(binaryimg, canvas2.width, canvas2.height);
+
+  // console.log(marix.length)
+
+  ch = canvas2.height;
+  cw = canvas2.width;
+
+
+  for(i = 0; i < canvas2.height; i++) 
+  {
+   arr[i] = [];
+   vis[i] = [];
+   for(j = 0; j < canvas2.width; j++) 
+   {
+     var s = 4 * i * canvas2.width + 4 * j;
+     if(binaryImageData.data[s] > 0 )
+     {
+       arr[i][j] = 1;  
+     }
+     else
+      {
+       arr[i][j] = 0;
+         // console.log(s);
+      }
+      vis[i][j] = -1;
+
+     }
+   }
+
+
+   for(i = 0; i < canv2.height; i++) 
+   {
+    for(j = 0; j < canv2.width; j++)
+    {
+      if(vis[i][j] == -1)
+      {
+        cc[no_cc] = [];
+        dfs(i, j);
+        no_cc = no_cc + 1;
+
+      }
+    }
+   }
+
+   console.log(no_cc);
+
+
+
+}
+
+
 
 
 
