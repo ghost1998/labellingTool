@@ -11,45 +11,45 @@ y = 2;
 
 size = 2;
 
-function init() 
+function init()
 {
     canvas = document.getElementById("Q3");
     ctx = canvas.getContext("2d");
     w = canvas.width;
     h = canvas.height;
     canvas.addEventListener
-    ("mousemove", 
-        function (e) 
+    ("mousemove",
+        function (e)
         {
-            findxy('move', e) ; 
-        }, 
+            findxy('move', e) ;
+        },
         false
         );
 
     canvas.addEventListener
-    ("mousedown", 
-        function (e) 
+    ("mousedown",
+        function (e)
         {
-            findxy('down', e) 
-        }, 
+            findxy('down', e)
+        },
         false
         );
 
     canvas.addEventListener
-    ("mouseup", 
-        function (e) 
+    ("mouseup",
+        function (e)
         {
             findxy('up', e)
-        }, 
+        },
         false
         );
 
     canvas.addEventListener
-    ("mouseout", 
-        function (e) 
+    ("mouseout",
+        function (e)
         {
             findxy('out', e)
-        }, 
+        },
         false
         );
 }
@@ -75,7 +75,7 @@ function getErasor()
     currenttool = "erasor"
 }
 
-function draw() 
+function draw()
 {
 
     ctx.beginPath();
@@ -91,9 +91,9 @@ function draw()
 }
 
 
-function findxy(res, e) 
+function findxy(res, e)
 {
-    if (res == 'down') 
+    if (res == 'down')
     {
         prevX = currX;
         prevY = currY;
@@ -102,7 +102,7 @@ function findxy(res, e)
 
         flag = true;
         dot_flag = true;
-        if (dot_flag) 
+        if (dot_flag)
         {
             ctx.beginPath();
             ctx.fillStyle = x;
@@ -133,7 +133,7 @@ function increaseSize()
     if (currenttool == "erasor") getErasor();
     else getPencil();
 }
-        
+
 function decreaseSize()
 {
     size = size - 2
@@ -179,7 +179,7 @@ function customSize(arg)
     zoomCtx.drawImage(main2, xp, yp, 200, 100, 0,0, 400, 200);
     zoomCtx.drawImage(main, xp, yp, 200, 100, 0,0, 400, 200);
     console.log(zoom.style);
-    zoom.style.top = e.pageY + 10 + "px"
+    zoom.style.top = e.pageY - 100 + "px"
     zoom.style.left = e.pageX + 10 + "px"
     zoom.style.display = "block";
   }
@@ -216,8 +216,8 @@ function removeglass()
 {
     console.log("removeglass");
 
-    document.getElementById("Q3").removeEventListener("mousemove", zoom1); 
-    document.getElementById("Q3").removeEventListener("mousemove", zoom2); 
+    document.getElementById("Q3").removeEventListener("mousemove", zoom1);
+    document.getElementById("Q3").removeEventListener("mousemove", zoom2);
     zoomCtx.clearRect(0,0, zoom.width, zoom.height);
     zoomCtx.fillStyle = "transparent";
 
@@ -233,12 +233,12 @@ init();
 
 
 
-function initDraw(canvas) 
+function initDraw(canvas)
 {
 
     function setMousePosition(e) {
         var ev = e || window.event; //Moz || IE
-        if (ev.pageX) 
+        if (ev.pageX)
         { //Moz
             console.log("in moz")
 
@@ -313,3 +313,19 @@ function initDraw(canvas)
 
 
 // initDraw(document.getElementById('Q3'));
+function download()
+{
+  var canvas = document.getElementById("Q3");
+  image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+  var link = document.createElement('a');
+  link.download = "mask.png";
+  link.href = image;
+  link.click();
+
+  var canvas = document.getElementById("Q2");
+  image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+  var link = document.createElement('a');
+  link.download = "image.png";
+  link.href = image;
+  link.click();
+}
