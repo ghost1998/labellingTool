@@ -70,6 +70,9 @@ function getErasor()
 {
     if(currenttool == "magnify") removeglass();
 
+    var elementToChange = document.getElementsByTagName("body")[0];
+    elementToChange.style.cursor = "url('./eraser.cur'), help";
+
     ctx.globalCompositeOperation = "destination-out"
     y = size;
     currenttool = "erasor"

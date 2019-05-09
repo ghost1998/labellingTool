@@ -105,6 +105,9 @@ function Predict()
 
   ch = canvas2.height;
   cw = canvas2.width;
+  console.log(binaryImagedata[10]);
+  console.log(binaryImagedata[20]);
+  console.log(binaryImagedata[30]);
 
 
   for(i = 0; i < canvas2.height; i++) 
@@ -113,16 +116,20 @@ function Predict()
    vis[i] = [];
    for(j = 0; j < canvas2.width; j++) 
    {
-     var s = 4 * i * canvas2.width + 4 * j;
-     if(binaryImageData.data[s] > 0 )
-     {
-       arr[i][j] = 1;  
-     }
-     else
-      {
-       arr[i][j] = 0;
-         // console.log(s);
-      }
+    s = 4 * i * canvas2.width + 4 * j;
+  // console.log(binaryImagedata.data.length);
+  // console.log(binaryImagedata[s]);
+  arr[i][j] == 0;
+
+     // if(binaryImageData.data[s] == 255)
+     // {
+     //   arr[i][j] = 1;  
+     // }
+     // else
+     //  {
+     //   arr[i][j] = 0;
+     //     // console.log(s);
+     //  }
       vis[i][j] = -1;
 
      }
@@ -133,7 +140,7 @@ function Predict()
    {
     for(j = 0; j < canv2.width; j++)
     {
-      if(vis[i][j] == -1)
+      if(vis[i][j] == -1  && ar[i][j] == 1)
       {
         cc[no_cc] = [];
         dfs(i, j);
@@ -142,6 +149,7 @@ function Predict()
       }
     }
    }
+  console.log(binaryImagedata.data.length);
 
    console.log(no_cc);
 
