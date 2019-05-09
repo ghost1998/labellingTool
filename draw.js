@@ -11,45 +11,45 @@ y = 2;
 
 size = 2;
 
-function init()
+function init() 
 {
     canvas = document.getElementById("Q3");
     ctx = canvas.getContext("2d");
     w = canvas.width;
     h = canvas.height;
     canvas.addEventListener
-    ("mousemove",
-        function (e)
+    ("mousemove", 
+        function (e) 
         {
-            findxy('move', e) ;
-        },
+            findxy('move', e) ; 
+        }, 
         false
         );
 
     canvas.addEventListener
-    ("mousedown",
-        function (e)
+    ("mousedown", 
+        function (e) 
         {
-            findxy('down', e)
-        },
+            findxy('down', e) 
+        }, 
         false
         );
 
     canvas.addEventListener
-    ("mouseup",
-        function (e)
+    ("mouseup", 
+        function (e) 
         {
             findxy('up', e)
-        },
+        }, 
         false
         );
 
     canvas.addEventListener
-    ("mouseout",
-        function (e)
+    ("mouseout", 
+        function (e) 
         {
             findxy('out', e)
-        },
+        }, 
         false
         );
 }
@@ -59,6 +59,9 @@ function init()
 function getPencil()
 {
     if(currenttool == "magnify") removeglass();
+
+    var elementToChange = document.getElementsByTagName("body")[0];
+    elementToChange.style.cursor = "url('./pencil.cur'), auto";
 
     ctx.globalCompositeOperation = "source-over";
     x = "rgba(255,0,0)";
@@ -71,14 +74,14 @@ function getErasor()
     if(currenttool == "magnify") removeglass();
 
     var elementToChange = document.getElementsByTagName("body")[0];
-    elementToChange.style.cursor = "url('./eraser.cur'), help";
+    elementToChange.style.cursor = "url('./eraser.cur'), auto";
 
     ctx.globalCompositeOperation = "destination-out"
     y = size;
     currenttool = "erasor"
 }
 
-function draw()
+function draw() 
 {
 
     ctx.beginPath();
@@ -94,9 +97,9 @@ function draw()
 }
 
 
-function findxy(res, e)
+function findxy(res, e) 
 {
-    if (res == 'down')
+    if (res == 'down') 
     {
         prevX = currX;
         prevY = currY;
@@ -105,7 +108,7 @@ function findxy(res, e)
 
         flag = true;
         dot_flag = true;
-        if (dot_flag)
+        if (dot_flag) 
         {
             ctx.beginPath();
             ctx.fillStyle = x;
@@ -136,7 +139,7 @@ function increaseSize()
     if (currenttool == "erasor") getErasor();
     else getPencil();
 }
-
+        
 function decreaseSize()
 {
     size = size - 2
@@ -162,28 +165,29 @@ function customSize(arg)
 
   function zoom1(e)
   {
-    console.log(e);
+    // console.log(e);
     zoomCtx.fillStyle = "white";
     //zoomCtx.clearRect(0,0, zoom.width, zoom.height);
     //zoomCtx.fillStyle = "transparent";
         // currX = e.layerX;
         // currY = e.layerY
 
-    console.log(main.width)
+    // console.log(main.width)
     var rect = canvas.getBoundingClientRect();
-    xp =  (e.clientX - rect.left) / (rect.right - rect.left) * main.width - 15
-    yp = (e.clientY - rect.top) / (rect.bottom - rect.top) * main.height - 15
+    xp =  (e.clientX - rect.left) / (rect.right - rect.left) * main.width - 2
+    yp = (e.clientY - rect.top) / (rect.bottom - rect.top) * main.height - 2
 
-    console.log(xp)
-    console.log(yp)
+    // console.log(xp)
+    // console.log(yp)
     zoomCtx.fillRect(0,0, zoom.width, zoom.height);
     // zoomCtx.drawImage(main, e.x, e.y, 200, 100, 0,0, 400, 200);
     // zoomCtx.drawImage(main, e.layerX, e.layerY, 200, 100, 0,0, 400, 200);
     zoomCtx.drawImage(main2, xp, yp, 200, 100, 0,0, 400, 200);
     zoomCtx.drawImage(main, xp, yp, 200, 100, 0,0, 400, 200);
-    console.log(zoom.style);
-    zoom.style.top = e.pageY - 100 + "px"
-    zoom.style.left = e.pageX + 10 + "px"
+    // console.log(zoom.style);
+    // console.log("in erasor")
+    zoom.style.top = e.pageY - 120 + "px"
+    zoom.style.left = e.pageX  + 10 + "px"
     zoom.style.display = "block";
   }
 
@@ -202,6 +206,8 @@ function customSize(arg)
 function mag()
 {
   currenttool = "magnify"
+  var elementToChange = document.getElementsByTagName("body")[0];
+  elementToChange.style.cursor = "url('./mag.cur'), auto";
 
 
 
@@ -219,12 +225,62 @@ function removeglass()
 {
     console.log("removeglass");
 
-    document.getElementById("Q3").removeEventListener("mousemove", zoom1);
-    document.getElementById("Q3").removeEventListener("mousemove", zoom2);
+    document.getElementById("Q3").removeEventListener("mousemove", zoom1); 
+    document.getElementById("Q3").removeEventListener("mousemove", zoom2); 
     zoomCtx.clearRect(0,0, zoom.width, zoom.height);
     zoomCtx.fillStyle = "transparent";
 
     // init();
+}
+
+function download(){
+    console.log("in down 2")
+    var date = new Date();
+    var timestamp = date.getTime();
+    var name1 = "Image_" + timestamp + ".jpg"
+    var name2 = "Mask_" + timestamp + ".jpg"
+    console.log(name1);
+    console.log(name2);
+
+    var canvas = document.getElementById("Q2");
+    var fileName = name1
+    if ('msToBlob' in canvas) 
+    { // IE10+
+        var blob = canvas.msToBlob();
+        navigator.msSaveBlob(blob, fileName);
+    } 
+    else 
+    {
+        var a = document.createElement('a');
+        a.setAttribute('href', canvas.toDataURL());
+        a.setAttribute('target', '_blank');
+        a.setAttribute('download', fileName);
+        a.style.display = 'none';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+    }
+
+    var canvas = document.getElementById("Q3");
+    var fileName = name2
+    if ('msToBlob' in canvas) 
+    { // IE10+
+        var blob = canvas.msToBlob();
+        navigator.msSaveBlob(blob, fileName);
+    } 
+    else 
+    {
+        var a = document.createElement('a');
+        a.setAttribute('href', canvas.toDataURL());
+        a.setAttribute('target', '_blank');
+        a.setAttribute('download', fileName);
+        a.style.display = 'none';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+    }
+
+
 }
 
 
@@ -236,12 +292,12 @@ init();
 
 
 
-function initDraw(canvas)
+function initDraw(canvas) 
 {
 
     function setMousePosition(e) {
         var ev = e || window.event; //Moz || IE
-        if (ev.pageX)
+        if (ev.pageX) 
         { //Moz
             console.log("in moz")
 
@@ -316,19 +372,3 @@ function initDraw(canvas)
 
 
 // initDraw(document.getElementById('Q3'));
-function download()
-{
-  var canvas = document.getElementById("Q3");
-  image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
-  var link = document.createElement('a');
-  link.download = "mask.png";
-  link.href = image;
-  link.click();
-
-  var canvas = document.getElementById("Q2");
-  image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
-  var link = document.createElement('a');
-  link.download = "image.png";
-  link.href = image;
-  link.click();
-}

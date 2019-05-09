@@ -12,7 +12,7 @@ body
 .slidecontainer {
   width: 100%;
 }
-/*
+
 .slider {
   -webkit-appearance: none;
   width: 100%;
@@ -23,7 +23,6 @@ body
   -webkit-transition: .2s;
   transition: opacity .2s;
 }
-*/
 
 .slider:hover {
   opacity: 1;
@@ -160,5 +159,4 @@ display: block;
 #zoom{
    border:1px black solid;
    box-shadow: 5px 5px 10px #1e1e1e;
-   /*background-color:lavender;*/
 }

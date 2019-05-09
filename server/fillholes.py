@@ -8,7 +8,7 @@ from collections import Counter
 xrange = range
 
 
-imgor = cv2.imread("../../../Downloads/hole/canvas.png", 1);
+imgor = cv2.imread("1.jpg", 1);
 
 img = imgor[:, :, 2]
 # img[img==255] = 1

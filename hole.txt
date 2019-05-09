@@ -1,0 +1,39 @@
+  
+
+
+  function add(accumulator, a) {
+    return accumulator + a;
+  }
+
+  function dilateCanvas() {
+    var canv3 = document.getElementById("Q3");
+    var context3 = canv3.getContext("2d");
+    // context3.scale(1/2, 1/2);
+    var cnvImg = context3.getImageData(0, 0, canv3.width, canv3.height);
+    var binImg = [];
+    for (i = 0; i < cnvImg.data.length; i += 4)  {
+      if (cnvImg.data[i] + cnvImg.data[i+1] + cnvImg.data[i+2] + cnvImg.data[i+3] > 255) {
+        binImg.push(1);
+      } else {
+        binImg.push(0);
+      }
+    }
+    var morph = new Morph(canv3.width, canv3.height, binImg);
+    // console.log(morph.data.reduce(add));
+    morph.dilateWithElement();
+    // console.log(morph.data.reduce(add));
+
+    context3.clearRect(0, 0, canv3.width, canv3.height);
+    cnvImg = context3.getImageData(0, 0, canv3.width, canv3.height);
+    for (i = 0; i < cnvImg.data.length; i += 4)  {
+      if (morph.data[i/4] == 1) {
+        cnvImg.data[i] = cnvImg.data[i+3] = 255;
+        cnvImg.data[i+1] = cnvImg.data[i+2] = 0;
+      } else {
+        cnvImg.data[i] = cnvImg.data[i+1] = cnvImg.data[i+2] = cnvImg.data[i+3] = 0;
+      }
+    }
+
+    context3.putImageData(cnvImg, 0, 0);
+    // return morph;
+  }
